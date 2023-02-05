@@ -39,13 +39,10 @@ namespace BVIcouldthinkof
                     ColumnSet LookupTask = new ColumnSet(new String[] { "new_tasks" });
                     Entity myEntityHavingLookup = service.Retrieve("new_itemses", entity.Id, LookupTask);
                     var TaskId = ((Microsoft.Xrm.Sdk.EntityReference)(myEntityHavingLookup.Attributes["new_tasks"])).Id;
-                    /*var hoursintaskitem = entity["new_hours"];*/
+
                     // The name of the whole number field you want to sum the values for
                     string fieldName = "new_hours";
 
-                    // The logical name of the lookup field
-                    // The logical name of the entity you want to retrieve data from
-                    /*string entityName = "new_itemses";*/
 
                     // FetchXML query to retrieve the top 10 records of the entity with the related tasks
                     string fetchXml = @"
