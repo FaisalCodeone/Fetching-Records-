@@ -1,0 +1,39 @@
+ClearCollect(
+    colCalendars,
+    Office365Outlook.CalendarGetTablesV2()
+);
+
+
+
+Office365Outlook.V4CalendarPostItem(
+    LookUp(Office365Outlook.CalendarGetTables().value, DisplayName = "Calendar").Name,
+    Subjectinputtext_1.Text,
+    Text(startdatecombo_1.SelectedDate + Time
+    (Value(starthrdropdown_1.Selected.Value), 
+    Value(startmndropdown_1.Selected.Value),
+    0
+    ),
+    UTC), 
+    
+    Text(enddatecombo_1.SelectedDate + Time
+    (Value(endhrdropdown_1.Selected.Value), 
+    Value(endmndropdown_1.Selected.Value),
+    0
+    ),
+    UTC), 
+    "(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi"
+);
+
+{
+        body: bodydis.HtmlText,
+        requiredAttendees: Concat(
+            ComboBox1.SelectedItems.Mail,
+            Mail & ";"
+        ),
+        isReminderOn: true,
+        reminderMinutesBeforeStart: 15
+    };
+
+Navigate(
+    'Select Room Screen',
+    ScreenTransition.Cover);
